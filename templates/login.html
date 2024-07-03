@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Login Page</title>
+</head>
+<body>
+    <div class="login-form-wrapper">
+        <h1 class="login-heading">Prijavite se</h1>
+        <form action="/login" method="post">
+            <label class="login-label" for="username">Korisnicko Ime:</label>
+            <input class="login-input" type="text" name="username" required>
+
+            <label class="login-label" for="password">Lozinka:</label>
+            <input class="login-input" type="password" name="password" required>
+
+            <input class="login-btn" type="submit" value="Prijavite se">
+        </form>
+        <br>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <p>{{ messages[0] }}</p>
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>
