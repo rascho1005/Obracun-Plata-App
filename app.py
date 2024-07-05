@@ -32,14 +32,7 @@ def login():
     return render_template('login.html')
 
 
-
-@app.route('/direktor/<username>')
-def direktor_profil(username):
-    direktor = function.direktor_username(username)
-    if direktor:
-        return render_template('direktor.html')
-
-
+#Ruta za radnika (posle logina)
 @app.route('/radnik/<username>')
 def radnik_profil(username):
     radnik = function.radnik_username(username)
@@ -47,6 +40,26 @@ def radnik_profil(username):
         radnici = function.prikaz_podataka_radnik(username)
         isplate = function.istorija_isplata(username)
         return render_template('radnik.html', radnici=radnici, isplate=isplate)
+    
+
+#Ruta za direktora (posle logina)
+@app.route('/direktor/<username>')
+def direktor_profil(username):
+    direktor = function.direktor_username(username)
+    if direktor:
+        radnici = function.prikaz_podataka_radnici()
+        return render_template('direktor.html', radnici=radnici)
+
+
+#Prikaz svih funkcija i podataka o radniku (Direktor)
+@app.route('/detalji/<radnik_id>')
+def direktor_radnik_detalji(radnik_id):
+    radnici = function.prikaz_podataka_radnik_id(radnik_id)
+    if radnici:
+        return render_template('direktor_radnik_prikaz.html', radnici=radnici)
+    else:
+        return 'Radnik not found', 404
+
 
 
 if __name__ == '__main__':

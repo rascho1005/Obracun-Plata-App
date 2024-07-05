@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% for radnik in radnici %}
+    <title>Profil: {{ radnik[1] }} {{ radnik[2] }}</title>
+    {% endfor %}
+</head>
+<body>
+    {% for radnik in radnici %}
+    <section class="section-about-worker">
+        <div class="about-worker-wrapper">
+            <img src="{{ url_for('static', filename='images/' ~ radnik[4]) }}" alt="">
+            <h1 class="worker-name">{{ radnik[1] }} {{ radnik[2] }} Godine:<span class="worker-age">{{ radnik[3] }}</span></h1>
+            <p class="worker-des">{{ radnik[6] }}</p>
+        </div>
+        <div class="blue-line"></div>
+        <div class="about-worker-stats-wrapper">
+            <h2 class="heading">Statistika</h2>
+            <div class="stats-wrapper">
+                <h3 class="text">Pozicija: {{ radnik[13] }}</h3>
+                <h3 class="text">Zaposlen: {{ radnik[5] }}</h3>
+                <h3 class="text">Zbir svih isplacenih sati: {{ radnik[7] }}</h3>
+                <h3 class="text">Zbir svih isplata: {{ radnik[8] }}</h3>
+            </div>
+            <div class="payment-wrapper">
+                <div class="payment-worktime-wrapper">
+                    <span><h3 class="text">Broj neisplacenih sati: {{ radnik[9] }}</h3></span>
+                    <span><h3 class="text">Vrednost neisplacenih sati: {{ radnik[10] }}</h3></span>
+                    <h2 class="heading">Istorija isplata</h2>
+                    {% for isplata in isplate %}
+                    <h3 class="text">Datum Isplate: {{ isplata[1] }}, Suma: {{ isplata[2] }}$, Odobrio Direktor: {{ isplata[3] }}</h3>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endfor %}
+</body>
+</html>

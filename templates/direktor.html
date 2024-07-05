@@ -7,5 +7,15 @@
 </head>
 <body>
     <h1>Prikaz Svih Radnika koji su zaposleni</h1>
+    {% for radnik in radnici %}
+    <div class="worker-card">
+        <img src="{{ url_for('static', filename='images/' ~ radnik[4]) }}" alt="">
+        <h3 class="text">{{ radnik[1] }} {{ radnik[2] }}</h3>
+        <h3 class="text">Pozicija: {{ radnik[13] }}</h3>
+        <h3 class="text">Broj neisplacenih sati: {{ radnik[9] }}</h3>
+        <h3 class="text">Vrednost neisplacenih sati: {{ radnik[10] }}</h3>
+        <button class="btn"><a href="{{ url_for('direktor_radnik_detalji', radnik_id=radnik[0]) }}">Vidi vise</a></button> 
+    </div>
+    {% endfor %}
 </body>
 </html>

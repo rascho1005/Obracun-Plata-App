@@ -25,6 +25,38 @@ def direktor_username(username):
     return db.cursorRadnik.fetchone()
 
 
+#Funkcija za prikaz svih podataka o radniku ali o raniku sa datim radnik_id-om
+def prikaz_podataka_radnik_id(radnik_id):
+    upit = """
+SELECT 
+    r.radnik_id,
+    r.ime,
+    r.prezime,
+    r.godine,
+    r.naziv_slike,
+    r.datum_zaposljenja,
+    r.opis,
+    r.ukupan_br_radnih_sati,
+    r.ukupno_zaradjeno,
+    r.trenutan_br_radnih_sati,
+    r.trenutno_zaradjeno,
+    r.korisnicko_ime,
+    r.lozinka,
+    p.ime_pozicije,
+    p.satnica,
+    d.direktor_ime_prezime AS direktor
+FROM 
+    radnik r
+INNER JOIN pozicija p ON r.ime_pozicije_id = p.pozicija_id
+INNER JOIN direktor d ON r.direktor_id = d.direktor_id
+WHERE 
+    r.radnik_id = %s
+"""
+    db.cursorRadnik.execute(upit, (radnik_id,))
+    return db.cursorRadnik.fetchall()
+############################################################################
+
+
 #Funkcija za prikaz svih podataka o radniku ali o raniku sa datim username-om
 def prikaz_podataka_radnik(username):
     upit = """
@@ -54,6 +86,37 @@ WHERE
 """
     db.cursorRadnik.execute(upit, (username,))
     return db.cursorRadnik.fetchall()
+############################################################################
+
+
+#Funkcija za prikaz svih podataka o radniku 
+def prikaz_podataka_radnici():
+    upit = """
+SELECT 
+    r.radnik_id,
+    r.ime,
+    r.prezime,
+    r.godine,
+    r.naziv_slike,
+    r.datum_zaposljenja,
+    r.opis,
+    r.ukupan_br_radnih_sati,
+    r.ukupno_zaradjeno,
+    r.trenutan_br_radnih_sati,
+    r.trenutno_zaradjeno,
+    r.korisnicko_ime,
+    r.lozinka,
+    p.ime_pozicije,
+    p.satnica,
+    d.direktor_ime_prezime AS direktor
+FROM 
+    radnik r
+INNER JOIN pozicija p ON r.ime_pozicije_id = p.pozicija_id
+INNER JOIN direktor d ON r.direktor_id = d.direktor_id
+"""
+    db.cursorRadnik.execute(upit)
+    return db.cursorRadnik.fetchall()
+############################################################################
 
 
 #Funkcija za prikaz istorije isplata radniku
@@ -69,7 +132,7 @@ FROM
 INNER JOIN radnik r ON r.radnik_id = i.radnik_id
 INNER JOIN direktor d ON r.direktor_id = d.direktor_id
 WHERE 
-    r.korisnicko_ime = %s
+    r.korisnicko_ime = %s 
 """
     db.cursorRadnik.execute(upit, (username,))
     return db.cursorRadnik.fetchall()
