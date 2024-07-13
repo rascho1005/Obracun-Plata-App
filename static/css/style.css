@@ -1,0 +1,71 @@
+/*Uredjivanje login forme*/
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: linear-gradient(#380036, #0cbaba);
+}
+.login-form-wrapper {
+    max-width: 650px;
+    padding: 20px;
+    margin: 0px 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.6);
+}
+h1 {
+    font-size: 26px;
+    font-weight: bold;
+    text-align: left;
+    color: white;
+    padding-bottom: 8px;
+    border-bottom: 1px solid silver;
+}
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px 0px;
+}
+label {
+    width: 95%;
+    color: white;
+    font-weight: bold;
+    margin: 5px 0px;
+    padding: 10px 0px 2px 0px;
+}
+input {
+    height: 40px;
+    width: 95%;
+    padding: 0px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+input:is(:focus, :valid) {
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+}
+.login-btn {
+    margin-top: 25px;
+    width: 25%;
+    padding: 10px;
+    display: block;
+    font-size: 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    background-image: linear-gradient(to right, #aa076b, #61045f);
+    cursor: pointer;
+    transition: 0.5s;
+}
+.login-btn:hover {
+    background-image: linear-gradient(to right, #61045f, #aa076b);
+}
