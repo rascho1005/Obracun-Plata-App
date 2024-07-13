@@ -69,3 +69,18 @@ input:is(:focus, :valid) {
 .login-btn:hover {
     background-image: linear-gradient(to right, #61045f, #aa076b);
 }
+/*Responsive za login*/
+@media screen and (max-width:760px) {
+    h1 {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: left;
+        color: white;
+        padding-bottom: 8px;
+        border-bottom: 1px solid silver;
+    }
+    .login-btn {
+        width: 30%;
+        font-size: 18px;
+    }
+}
